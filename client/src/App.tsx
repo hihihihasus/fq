@@ -31,9 +31,9 @@ function App() {
   }, [discoveredAlloys]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-100">
+    <div className="bg-gray-100 min-h-screen">
       <Navbar />
-      <main className="flex-grow container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-4 overflow-auto">
         <LabInterface 
           discoveredAlloys={discoveredAlloys} 
           addDiscoveredAlloy={addDiscoveredAlloy} 

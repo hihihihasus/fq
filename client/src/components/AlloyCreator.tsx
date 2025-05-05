@@ -103,10 +103,10 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col">
       {/* Área para soltar os metais */}
       <div 
-        className={`flex-1 min-h-[200px] border-2 border-dashed rounded-lg p-4 mb-4 transition-colors ${
+        className={`min-h-[180px] border-2 border-dashed rounded-lg p-3 mb-2 transition-colors ${
           dropActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
         onDragOver={(e) => {
@@ -118,8 +118,8 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
       >
         <div className="flex flex-wrap gap-3 items-start justify-center">
           {selectedMetals.length === 0 ? (
-            <div className="text-gray-500 text-center py-12">
-              <Beaker className="mx-auto h-12 w-12 mb-3 text-gray-400" />
+            <div className="text-gray-500 text-center py-8">
+              <Beaker className="mx-auto h-12 w-12 mb-2 text-gray-400" />
               <p>Arraste metais para aqui para começar a misturar</p>
             </div>
           ) : (
@@ -143,27 +143,29 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
       </div>
 
       {/* Botões de ação */}
-      <div className="flex gap-5 justify-center">
+      <div className="flex gap-4 justify-center mb-2">
         <Button
           variant="outline"
           onClick={clearMetals}
           disabled={selectedMetals.length === 0}
-          className="px-6 py-2 text-base"
+          className="px-6 py-2 text-base font-medium border-2 border-gray-300"
         >
+          <Trash2 size={18} className="mr-1" /> 
           Limpar
         </Button>
         <Button
           onClick={createAlloy}
           disabled={selectedMetals.length < 2}
-          className="px-6 py-2 text-base bg-blue-600 hover:bg-blue-700"
+          className="px-6 py-2 text-base font-medium bg-blue-600 hover:bg-blue-700"
         >
+          <Beaker size={18} className="mr-1" />
           Combinar
         </Button>
       </div>
 
       {/* Mensagem de resultado */}
       {result && (
-        <div className={`mt-4 p-3 rounded-md ${
+        <div className={`p-3 rounded-md ${
           result.success ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'
         }`}>
           {result.message}
