@@ -32,7 +32,7 @@ const AlloyDisplay: React.FC<AlloyDisplayProps> = ({
               <div className="mb-2">
                 {/* Exibir imagem da liga */}
                 <div 
-                  className="w-full h-32 bg-center bg-no-repeat bg-contain mx-auto mb-2"
+                  className="w-full h-28 bg-center bg-no-repeat bg-contain mx-auto mb-2"
                   style={{ backgroundImage: `url(${alloy.image})` }}
                 ></div>
                 <h3 className="font-semibold text-slate-700 text-center">{alloy.name}</h3>
