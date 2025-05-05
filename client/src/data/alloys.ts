@@ -24,7 +24,7 @@ export const allAlloys: Alloy[] = [
     recipe: [getMetalById(1), getMetalById(8)], // Ferro + Carbono
     description: "Liga de ferro com pequenas quantidades de carbono, que aumenta a resistência à deformação.",
     application: "Construção, ferramentas, automóveis",
-    image: "/images/carbon_steel.jpg"
+    image: "/images/carbon_steel.svg"
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ export const allAlloys: Alloy[] = [
     recipe: [getMetalById(2), getMetalById(3)], // Cobre + Estanho
     description: "Liga de cobre e estanho, mais dura que o cobre puro e com melhor resistência à corrosão.",
     application: "Esculturas, moedas, instrumentos musicais",
-    image: "/images/bronze.jpg"
+    image: "/images/bronze.svg"
   },
   {
     id: 3,
@@ -40,7 +40,7 @@ export const allAlloys: Alloy[] = [
     recipe: [getMetalById(2), getMetalById(4)], // Cobre + Zinco
     description: "Liga de cobre e zinco, com coloração amarela característica e boa maleabilidade.",
     application: "Instrumentos, decoração, canalização",
-    image: "/images/brass.jpg"
+    image: "/images/brass.svg"
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ export const allAlloys: Alloy[] = [
     recipe: [getMetalById(1), getMetalById(7), getMetalById(5)], // Ferro + Crómio + Níquel
     description: "Liga altamente resistente à corrosão devido à adição de crómio e níquel.",
     application: "Cutelaria, equipamentos médicos, construção",
-    image: "/images/stainless_steel.jpg"
+    image: "/images/stainless_steel.svg"
   },
   {
     id: 5,
@@ -56,6 +56,6 @@ export const allAlloys: Alloy[] = [
     recipe: [getMetalById(6), getMetalById(2), getMetalById(9), getMetalById(10)], // Alumínio + Cobre + Manganês + Silício
     description: "Liga de alumínio endurecida com cobre, manganês e silício, mais resistente que o alumínio puro.",
     application: "Aeronáutica, automóveis, peças de alta resistência",
-    image: "/images/duralumin.jpg"
+    image: "/images/duralumin.svg"
   }
 ];

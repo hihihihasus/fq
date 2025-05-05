@@ -5,49 +5,58 @@ import AlloyDisplay from "./AlloyDisplay";
 import HelpButton from "./HelpButton";
 import { availableMetals } from "../data/metals";
 import { allAlloys, Alloy } from "../data/alloys";
-import { useAudio } from "@/lib/stores/useAudio";
+import { audioService } from "@/lib/audio-service";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
 
 interface LabInterfaceProps {
   discoveredAlloys: Alloy[];
   addDiscoveredAlloy: (alloy: Alloy) => void;
+  resetAllDiscoveries: () => void;
 }
 
 const LabInterface: React.FC<LabInterfaceProps> = ({ 
   discoveredAlloys, 
-  addDiscoveredAlloy 
+  addDiscoveredAlloy,
+  resetAllDiscoveries
 }) => {
   const [selectedMetal, setSelectedMetal] = useState<null | any>(null);
   const [showRecipe, setShowRecipe] = useState<boolean>(false);
-  const { playHit, playSuccess } = useAudio();
 
   // Função para lidar com o sucesso de criar uma liga
   const handleAlloyCreated = (alloy: Alloy) => {
     addDiscoveredAlloy(alloy);
-    playSuccess();
+    // O som agora é tocado diretamente pelo modal de descoberta
   };
 
   // Função para iniciar o arrasto do metal
   const handleDragStart = (metal: any) => {
     setSelectedMetal(metal);
-    playHit();
+    audioService.playClick();
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="bg-gray-100 rounded-lg px-4 py-3 shadow-lg">
-        <div className="mb-3">
-          <h1 className="text-2xl font-bold text-gray-800 mb-1">Laboratório de Ligas Metálicas</h1>
-          <p className="text-gray-600 text-sm">
-            Descubra as 5 ligas metálicas combinando diferentes metais. 
-            Use o botão de ajuda (?) para ver as receitas das ligas que faltam descobrir.
+    <div className="flex flex-col h-full">
+      <div className="bg-gray-100 rounded-lg px-3 py-2 shadow-lg flex flex-col h-full">
+        <div className="mb-2">
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl font-bold text-gray-800">Laboratório de Ligas Metálicas</h1>
+            <HelpButton 
+              showRecipe={showRecipe} 
+              setShowRecipe={setShowRecipe} 
+              discoveredAlloys={discoveredAlloys}
+            />
+          </div>
+          <p className="text-gray-600 text-xs">
+            Descubra as 5 ligas metálicas combinando diferentes metais.
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-3 flex-grow">
           {/* Painel de metais disponíveis */}
-          <div className="bg-white p-3 rounded-md shadow-md md:w-1/3">
-            <h2 className="text-lg font-semibold text-gray-700 mb-2">Metais Disponíveis</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="bg-white p-2 rounded-md shadow-md md:w-1/3">
+            <h2 className="text-sm font-semibold text-gray-700 mb-1">Metais Disponíveis</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {availableMetals.map((metal) => (
                 <MetalComponent 
                   key={metal.id} 
@@ -59,15 +68,8 @@ const LabInterface: React.FC<LabInterfaceProps> = ({
           </div>
 
           {/* Área de criação de ligas */}
-          <div className="flex-1 bg-white p-3 rounded-md shadow-md">
-            <div className="flex justify-between items-center mb-2">
-              <h2 className="text-lg font-semibold text-gray-700">Área de Trabalho</h2>
-              <HelpButton 
-                showRecipe={showRecipe} 
-                setShowRecipe={setShowRecipe} 
-                discoveredAlloys={discoveredAlloys}
-              />
-            </div>
+          <div className="flex-1 bg-white p-2 rounded-md shadow-md">
+            <h2 className="text-sm font-semibold text-gray-700 mb-1">Área de Trabalho</h2>
             <AlloyCreator
               onAlloyCreated={handleAlloyCreated}
               discoveredAlloys={discoveredAlloys}
@@ -76,10 +78,22 @@ const LabInterface: React.FC<LabInterfaceProps> = ({
         </div>
 
         {/* Área de ligas descobertas */}
-        <div className="mt-4 bg-white p-3 rounded-md shadow-md overflow-y-auto max-h-[400px]">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2 sticky top-0 bg-white py-1">
-            Ligas Descobertas ({discoveredAlloys.length} de {allAlloys.length})
-          </h2>
+        <div className="mt-3 bg-white p-2 rounded-md shadow-md overflow-y-auto" style={{ maxHeight: 'calc(100vh - 350px)', minHeight: '150px' }}>
+          <div className="flex justify-between items-center mb-1 sticky top-0 bg-white z-10">
+            <h2 className="text-sm font-semibold text-gray-700">
+              Ligas Descobertas ({discoveredAlloys.length} de {allAlloys.length})
+            </h2>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={resetAllDiscoveries}
+              className="h-6 px-2 text-xs flex items-center gap-1"
+              title="Reiniciar descobertas"
+              disabled={discoveredAlloys.length === 0}
+            >
+              <RotateCcw size={12} /> Reset
+            </Button>
+          </div>
           <AlloyDisplay 
             discoveredAlloys={discoveredAlloys} 
             allAlloys={allAlloys}

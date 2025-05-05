@@ -35,15 +35,14 @@ const MetalComponent: FC<MetalComponentProps> = ({
       style={{ 
         backgroundColor: metal.color,
         borderColor: metal.borderColor || 'darkgray',
-        transform: `scale(${scale})`,
-        width: `${70 * scale}px`,
-        height: `${70 * scale}px`
+        width: `${64 * scale}px`,
+        height: `${64 * scale}px`
       }}
       draggable={isDraggable}
       onDragStart={handleDragStart}
     >
-      <div className="text-center text-xl font-bold text-white">{metal.symbol}</div>
-      <div className="text-xs text-white mt-1">{metal.name}</div>
+      <div className="text-center font-bold text-white" style={{ fontSize: `${18 * scale}px` }}>{metal.symbol}</div>
+      <div className="text-white mt-1" style={{ fontSize: `${10 * scale}px` }}>{metal.name}</div>
     </div>
   );
 };

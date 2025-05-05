@@ -89,43 +89,44 @@ const HelpButton: React.FC<HelpButtonProps> = ({
       {/* Modal de Receitas */}
       {showRecipeModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full p-4 relative overflow-y-auto max-h-[90vh]">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full p-3 relative overflow-y-auto max-h-[80vh]">
             <Button 
-              className="absolute right-2 top-2"
+              className="absolute right-1 top-1"
               variant="ghost"
               size="sm"
               onClick={() => setShowRecipeModal(false)}
             >
-              <X size={16} />
+              <X size={14} />
             </Button>
             
-            <h2 className="text-xl font-bold text-amber-800 mb-3">Receitas a Descobrir</h2>
+            <h2 className="text-lg font-bold text-amber-800 mb-2">Receitas a Descobrir</h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {undiscoveredAlloys.length === 0 ? (
-                <p className="text-green-600 font-medium col-span-full text-center py-4">
+                <p className="text-green-600 font-medium col-span-full text-center py-3 text-sm">
                   Parabéns! Você já descobriu todas as ligas possíveis!
                 </p>
               ) : (
                 undiscoveredAlloys.map(alloy => (
-                  <div key={alloy.id} className="bg-amber-50 p-3 rounded-md shadow border border-amber-200">
-                    <h3 className="text-base font-semibold text-amber-800">{alloy.name}</h3>
-                    <p className="text-xs text-amber-700 mt-1">
-                      <span className="font-semibold">Composição:</span>
-                    </p>
-                    <div className="flex flex-wrap gap-1 mt-1 mb-2">
-                      {alloy.recipe.map((metal: Metal) => (
-                        <div key={metal.id} className="transform scale-[0.65] origin-left -ml-1 first:ml-0">
-                          <MetalComponent 
-                            metal={metal} 
-                            onDragStart={() => {}} 
-                            isDraggable={false}
-                            scale={0.7}
-                          />
-                        </div>
-                      ))}
+                  <div key={alloy.id} className="bg-amber-50 p-2 rounded-md shadow border border-amber-200">
+                    <h3 className="text-sm font-semibold text-amber-800">{alloy.name}</h3>
+                    <div className="flex items-center gap-1">
+                      <span className="text-[10px] text-amber-700 font-semibold">Composição:</span>
+                      <div className="flex flex-wrap gap-0.5">
+                        {alloy.recipe.map((metal: Metal, index: number) => (
+                          <div key={metal.id} className="w-6 h-6 flex items-center justify-center">
+                            <div 
+                              className="w-5 h-5 rounded-full text-[9px] font-semibold flex items-center justify-center" 
+                              style={{ backgroundColor: metal.color, color: "#333", border: `1px solid ${metal.borderColor || 'gray'}` }}
+                            >
+                              {metal.symbol}
+                            </div>
+                            {index < alloy.recipe.length - 1 && <span className="text-amber-700 text-xs ml-0.5">+</span>}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-xs text-amber-700">
+                    <p className="text-[10px] text-amber-700">
                       <span className="font-semibold">Aplicação:</span> {alloy.application}
                     </p>
                   </div>
@@ -137,23 +138,23 @@ const HelpButton: React.FC<HelpButtonProps> = ({
       )}
 
       <Button 
-        variant="outline" 
+        variant="ghost" 
         size="icon"
         onClick={toggleInstructions}
-        className="rounded-full"
+        className="rounded-full h-7 w-7"
         title="Instruções"
       >
-        <Info className="h-5 w-5" />
+        <Info className="h-4 w-4" />
       </Button>
 
       <Button 
-        variant="outline" 
+        variant="ghost" 
         size="icon"
         onClick={toggleHelp}
-        className={`rounded-full ${showRecipeModal ? 'bg-amber-100 border-amber-300' : ''}`}
+        className={`rounded-full h-7 w-7 ${showRecipeModal ? 'bg-amber-100 text-amber-700' : ''}`}
         title="Ver receitas"
       >
-        <HelpCircle className="h-5 w-5" />
+        <HelpCircle className="h-4 w-4" />
       </Button>
     </div>
   );
