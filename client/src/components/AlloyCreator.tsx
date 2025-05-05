@@ -106,7 +106,7 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
     <div className="flex flex-col h-full">
       {/* Área para soltar os metais */}
       <div 
-        className={`flex-1 min-h-[150px] border-2 border-dashed rounded-lg p-3 mb-3 transition-colors ${
+        className={`flex-1 min-h-[200px] border-2 border-dashed rounded-lg p-4 mb-4 transition-colors ${
           dropActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
         onDragOver={(e) => {
@@ -116,11 +116,11 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
         onDragLeave={() => setDropActive(false)}
         onDrop={handleDrop}
       >
-        <div className="flex flex-wrap gap-2 items-start justify-center">
+        <div className="flex flex-wrap gap-3 items-start justify-center">
           {selectedMetals.length === 0 ? (
-            <div className="text-slate-500 text-center p-4">
-              <Beaker className="mx-auto h-8 w-8 mb-2 text-slate-400" />
-              <p className="text-sm">Arraste metais para aqui para começar a misturar</p>
+            <div className="text-gray-500 text-center py-12">
+              <Beaker className="mx-auto h-12 w-12 mb-3 text-gray-400" />
+              <p>Arraste metais para aqui para começar a misturar</p>
             </div>
           ) : (
             selectedMetals.map((metal) => (
@@ -129,13 +129,12 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
                   metal={metal} 
                   onDragStart={() => {}} 
                   isDraggable={false}
-                  scale={0.8}
                 />
                 <button
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-100 hover:opacity-80"
                   onClick={() => removeMetal(metal.id)}
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={14} />
                 </button>
               </div>
             ))
@@ -144,19 +143,19 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
       </div>
 
       {/* Botões de ação */}
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-5 justify-center">
         <Button
           variant="outline"
           onClick={clearMetals}
           disabled={selectedMetals.length === 0}
-          className="w-28 text-sm py-1 h-8"
+          className="px-6 py-2 text-base"
         >
           Limpar
         </Button>
         <Button
           onClick={createAlloy}
           disabled={selectedMetals.length < 2}
-          className="w-28 text-sm py-1 h-8"
+          className="px-6 py-2 text-base bg-blue-600 hover:bg-blue-700"
         >
           Combinar
         </Button>
@@ -164,7 +163,7 @@ const AlloyCreator: React.FC<AlloyCreatorProps> = ({
 
       {/* Mensagem de resultado */}
       {result && (
-        <div className={`mt-3 p-2 rounded-md text-sm ${
+        <div className={`mt-4 p-3 rounded-md ${
           result.success ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'
         }`}>
           {result.message}

@@ -28,7 +28,7 @@ const MetalComponent: FC<MetalComponentProps> = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col items-center p-2 border-2 rounded-md cursor-pointer transition-transform hover:scale-105",
+        "relative flex flex-col items-center justify-center p-2 border-2 rounded-md transition-transform hover:scale-105",
         isDraggable && "cursor-grab active:cursor-grabbing",
         className
       )}
@@ -42,8 +42,8 @@ const MetalComponent: FC<MetalComponentProps> = ({
       draggable={isDraggable}
       onDragStart={handleDragStart}
     >
-      <div className="text-center font-bold text-white text-shadow">{metal.symbol}</div>
-      <div className="text-xs text-white text-shadow mt-1">{metal.name}</div>
+      <div className="text-center text-xl font-bold text-white">{metal.symbol}</div>
+      <div className="text-xs text-white mt-1">{metal.name}</div>
     </div>
   );
 };

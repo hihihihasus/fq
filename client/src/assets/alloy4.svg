@@ -1,15 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
   <title>Aço Inoxidável</title>
-  <rect width="100%" height="100%" fill="#e0e0e0"/>
-  <g>
-    <circle cx="100" cy="100" r="70" fill="#e8e8e8" stroke="#b0b0b0" stroke-width="2"/>
-    <ellipse cx="100" cy="100" rx="60" ry="40" fill="#d0d0d0" stroke="#b0b0b0" stroke-width="1"/>
-    <line x1="40" y1="100" x2="160" y2="100" stroke="#b0b0b0" stroke-width="1"/>
-    <line x1="100" y1="60" x2="100" y2="140" stroke="#b0b0b0" stroke-width="1"/>
-    <circle cx="100" cy="100" r="20" fill="#e8e8e8" stroke="#b0b0b0" stroke-width="1.5"/>
-    <text x="100" y="105" font-family="Arial" font-size="20" text-anchor="middle" fill="#777">Cr+Ni</text>
+  <rect width="100%" height="100%" fill="#e5e5e5"/>
+  
+  <!-- Main stainless steel with metallic silver appearance -->
+  <circle cx="100" cy="100" r="80" fill="#b0b0b0"/>
+  <circle cx="100" cy="100" r="70" fill="#d8d8d8"/>
+  
+  <!-- Metallic gradient effect -->
+  <ellipse cx="100" cy="70" rx="60" ry="30" fill="white" opacity="0.2"/>
+  <ellipse cx="100" cy="130" rx="60" ry="30" fill="#a0a0a0" opacity="0.2"/>
+  
+  <!-- Characteristic stainless steel pattern -->
+  <g opacity="0.7">
+    <ellipse cx="100" cy="100" rx="55" ry="45" fill="none" stroke="#c0c0c0" stroke-width="1"/>
+    <line x1="45" y1="100" x2="155" y2="100" stroke="#c0c0c0" stroke-width="1"/>
+    <line x1="100" y1="55" x2="100" y2="145" stroke="#c0c0c0" stroke-width="1"/>
   </g>
-  <text x="100" y="185" font-family="Arial" font-size="14" text-anchor="middle" fill="#333">
+  
+  <!-- Center emblem with chromium and nickel marking -->
+  <circle cx="100" cy="100" r="25" fill="#e8e8e8" stroke="#a0a0a0" stroke-width="2"/>
+  <circle cx="100" cy="100" r="23" fill="#f0f0f0"/>
+  
+  <text x="100" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#666">Cr+Ni</text>
+  
+  <text x="100" y="185" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#222">
     Aço Inoxidável
   </text>
 </svg>
