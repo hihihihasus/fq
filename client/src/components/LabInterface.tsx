@@ -39,7 +39,7 @@ const LabInterface: React.FC<LabInterfaceProps> = ({
           <h1 className="text-3xl font-bold text-slate-800 mb-2">Laboratório de Ligas Metálicas</h1>
           <p className="text-slate-600">
             Descubra as 5 ligas metálicas combinando diferentes metais. 
-            Use o botão de ajuda para ver as receitas das ligas que faltam descobrir.
+            Use o botão de ajuda (?) para ver as receitas das ligas que faltam descobrir.
           </p>
         </div>
 
@@ -85,29 +85,6 @@ const LabInterface: React.FC<LabInterfaceProps> = ({
             allAlloys={allAlloys}
           />
         </div>
-
-        {/* Receitas das ligas por descobrir (visíveis apenas quando o botão de ajuda é clicado) */}
-        {showRecipe && (
-          <div className="mt-6 bg-yellow-50 p-4 rounded-md shadow-md border-2 border-yellow-200">
-            <h2 className="text-xl font-semibold text-yellow-800 mb-3">Receitas a Descobrir</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allAlloys
-                .filter(alloy => !discoveredAlloys.some(a => a.id === alloy.id))
-                .map(alloy => (
-                  <div key={alloy.id} className="bg-white p-3 rounded shadow">
-                    <h3 className="text-lg font-medium text-slate-700">{alloy.name}</h3>
-                    <p className="text-sm text-slate-600 mt-1">
-                      <span className="font-semibold">Composição:</span>{" "}
-                      {alloy.recipe.map(m => m.name).join(" + ")}
-                    </p>
-                    <p className="text-sm text-slate-600 mt-1">
-                      <span className="font-semibold">Aplicação:</span> {alloy.application}
-                    </p>
-                  </div>
-                ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
